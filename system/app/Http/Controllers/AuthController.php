@@ -20,14 +20,16 @@ class AuthController extends Controller
 	function prosesLogin()
 	{
 		if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
-			$user = Auth::user();
-			// if($user->level == 1) return redirect('admin/beranda')->with('success', 'Login berhasil');
-			// if($user->level == 0) return redirect('beranda/pengguna')->with('success', 'Login berhasil');
-			} else {
+			return redirect('admin/beranda')->with('success', 'Login berhasil');
+		} else {
 			return back()->with('danger', 'Login anda gagal, mohon periksa email atau password anda!');
-		}
+	}
+	
 
-		
+		// if($user->level == 1) return redirect('admin/beranda')->with('success', 'Login berhasil');
+			// if($user->level == 0) return redirect('beranda/pengguna')->with('success', 'Login berhasil');
+
+
 	// 	$email = request('email');
 	// 	$user = Pembeli::where('email', $email)->first();
 	// 	if($user){
